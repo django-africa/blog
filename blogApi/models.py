@@ -20,7 +20,6 @@ class UserProfile(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=300)
-    slug = models.SlugField()
 
     def __str__(self):
         return self.name
@@ -31,9 +30,8 @@ class Post(models.Model, HitCountMixin):
     title = models.CharField(max_length=350, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    view_count = models.IntegerField(default=0)
-    published_date = models.DateTimeField(blank=True, null=True)
+    view_count = models.IntegerField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     featured_image = models.FileField(upload_to='images/')
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
     tags = TaggableManager()
@@ -48,12 +46,11 @@ class Post(models.Model, HitCountMixin):
         self.summary = self.text[:100]
         return self.summary
 
+    def get_count(self):
+        return self.hit_count.hits
+
     def __str__(self):
         return self.title
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
 
     def save(self, *args, **kwargs):
         self.summary = self.get_post_summary()
@@ -75,19 +72,22 @@ class Comment(models.Model):
             self.user.full_name = "Anonymous"
             self.user.profile_image = models.FileField(default="default.png")
 
-    @property
-    def get_email(self):
-        return self.user.email
-
-    @property
-    def get_name(self):
-        return self.user.get_full_name
-
-    @property
-    def get_profile_image(self):
-        return self.user.profile_image
-
     def __str__(self):
         return '{} comment made by {}'.format(self.body, self.get_name)
+
+
+class PrayerRequest(models.Model):
+    name = models.CharField(max_length=350)
+    email = models.EmailField()
+    prayer_point = models.TextField()
+    date = models.DateTimeField(blank=True, null=True,)
+
+    def save(self, *args, **kwargs):
+        self.date = timezone.now()
+        return super(PrayerRequest, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
 
 

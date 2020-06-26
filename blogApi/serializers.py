@@ -1,5 +1,6 @@
 from rest_framework import serializers, fields
-from .models import Post, Comment, UserProfile
+from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
+from .models import Post, Comment, UserProfile, PrayerRequest, Category
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -8,22 +9,34 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
 
 
-class PostSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Category
+
+
+class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     author = UserProfileSerializer()
-    created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'])
-    published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'])
+    created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
+    published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
+    category = CategorySerializer()
+    tags = TagListSerializerField()
+    view_count = fields.IntegerField(source='get_count', required=False)
 
     class Meta:
-        fields = ('author', 'title', 'text', 'featured_image', 'created_date', 'published_date', 'summary')
+        fields = "__all__"
         model = Post
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'])
-    email = fields.EmailField(source='get_email')
     user = UserProfileSerializer(required=False)
-    profile_image = fields.FileField(source='get_profile_image')
 
     class Meta:
-        fields = ('user', 'email', 'body', 'created_date', 'active', 'profile_image')
+        fields = "__all__"
         model = Comment
+
+
+class PrayerRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = PrayerRequest

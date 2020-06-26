@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Post, Comment, UserProfile,Category
+from .models import Post, Comment, UserProfile, Category, PrayerRequest
 # Register your models here.
 
 admin.site.register(Post)
 admin.site.register(UserProfile)
 admin.site.register(Category)
+admin.site.register(PrayerRequest)
 
 
 @admin.register(Comment)
