@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from . import secret
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,8 +84,12 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'blog',
+        'USER': secret.database_username,
+        'PASSWORD': secret.database_password,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -126,10 +131,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'blogApiProject/media')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'blogApiProject/media')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'blogApiProject/media1')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'blogApiProject/media1')
+# MEDIA_URL = '/media/'
+
 AUTH_USER_MODEL = 'blogApi.UserProfile'
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+}
+
 REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
+
+CELERY_BROKER_URL = 'amqp://localhost'

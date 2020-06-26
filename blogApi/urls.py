@@ -1,7 +1,6 @@
-from django.urls import path
 from django.conf import settings
-from rest_framework.routers import DefaultRouter
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
 # from django.contrib.staticfiles import views
 # from django.urls import re_path
 from .views import UserViewSet, PostViewSet, CommentViewSet, PrayerRequestViewSet, CategoryViewSet
