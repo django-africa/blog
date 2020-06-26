@@ -1,2 +1,2 @@
-database_username = "blog"
+database_username = "marvelous"
 database_password = "Password"

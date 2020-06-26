@@ -8,7 +8,6 @@ admin.site.register(Category)
 admin.site.register(PrayerRequest)
 
 
-
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("body", "post", "created_date", "active")
