@@ -26,7 +26,7 @@ SECRET_KEY = 'xjm7**e=&19w_1pg%fjw^6-_xg@^q_&o3ojx^p7-q44z5!@+jc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -131,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT =
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -162,3 +163,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TASK_ALWAYS_EAGER = False
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Lagos'
+
+DEFAULT_FROM_EMAIL= 'hello@djangoafrica.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
