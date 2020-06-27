@@ -4,6 +4,7 @@ from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
+from .tasks import send_feedback_email_task
 
 # Create your models here.
 
@@ -83,7 +84,11 @@ class PrayerRequest(models.Model):
     date = models.DateTimeField(blank=True, null=True,)
 
     def save(self, *args, **kwargs):
+        message = "Hi, {}. Your prayer request has been successfully sent across. " \
+                  "You are in our prayers.".format(self.name)
         self.date = timezone.now()
+        send_feedback_email_task(message, self.email)
+        send_feedback_email_task.apply_async()
         return super(PrayerRequest, self).save(*args, **kwargs)
 
     def __str__(self):
