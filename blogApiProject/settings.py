@@ -142,11 +142,21 @@ SWAGGER_SETTINGS = {
     'LOGOUT_URL': 'rest_framework:logout',
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        }
+    }
+}
+
 REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 # CELERY STUFF
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_URL = [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
+CELERY_RESULT_BACKEND = [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
