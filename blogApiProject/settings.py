@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog',
         'USER': secret.database_username,
         'PASSWORD': secret.database_password,
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': '',
+        'PORT': '5432',
     }
 }
 
