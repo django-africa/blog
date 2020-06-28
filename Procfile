@@ -1,5 +1,5 @@
-release: python manage.py makemigrations blogApi
-release: python manage.py migrate blogApi
+run: python manage.py makemigrations blogApi
+run: python manage.py migrate blogApi
 release: python manage.py makemigrations
 release: python manage.py migrate
 
