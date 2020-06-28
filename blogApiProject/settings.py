@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'blogApi.apps.BlogapiConfig',
+    'blogApi',
     'rest_framework',
     'rest_framework_swagger',
     'taggit',
