@@ -16,10 +16,6 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.email
 
-    def save(self, *args, **kwargs):
-        recolor_blog_picture_task.apply_async(self.profile_image)
-        return super(PrayerRequest, self).save(*args, **kwargs)
-
 class Category(models.Model):
     name = models.CharField(max_length=300)
 
@@ -56,6 +52,7 @@ class Post(models.Model, HitCountMixin):
 
     def save(self, *args, **kwargs):
         self.summary = self.get_post_summary()
+        recolor_blog_picture_task.apply_async(self.profile_image)
         return super(Post, self).save(*args, **kwargs)
 
 
@@ -91,9 +88,7 @@ class PrayerRequest(models.Model):
         self.date = timezone.now()
         message = "Hi, {}. Your prayer request has been successfully sent across. " \
                   "You are in our prayers.".format(self.name)
-
-        send_feedback_email_task(message, self.email)
-        send_feedback_email_task.apply_async()
+        send_feedback_email_task.apply_async(message, self.email)
         return super(PrayerRequest, self).save(*args, **kwargs)
 
 
