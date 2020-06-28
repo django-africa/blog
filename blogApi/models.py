@@ -4,7 +4,7 @@ from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
-from .tasks import send_feedback_email_task # Create your models here.
+from .tasks import send_feedback_email_task, ecolor_blog_picture_task# Create your models here.
 
 
 class UserProfile(AbstractUser):
