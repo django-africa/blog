@@ -1,6 +1,7 @@
 from celery.task import task
 from celery.utils.log import get_task_logger
 from .emails import  send_feedback_email
+from .recolor import recolor_picture
 
 logger = get_task_logger(__name__)
 
