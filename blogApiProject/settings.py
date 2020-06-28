@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
-        'USER': ''
-        'PASSWORD': ''
+        'NAME': 'blog',
+        'USER': secret.database_username,
+        'PASSWORD': secret.database_password,
         'HOST': '',
         'PORT': '',
     }
