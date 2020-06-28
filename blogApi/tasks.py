@@ -15,4 +15,4 @@ def send_feedback_email_task(message, email):
 @task(name="recolor_blog_picture_task")
 def recolor_blog_picture_task(picture):
     logger.info("I have recolor the blog picture")
-    return recolor_picture(picture)
+    return recolor_blog_picture(picture)
