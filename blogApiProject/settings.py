@@ -90,7 +90,7 @@ DATABASES = {
         'USER': secret.database_username,
         'PASSWORD': secret.database_password,
         'HOST': '',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
