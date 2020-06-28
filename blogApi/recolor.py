@@ -2,14 +2,14 @@ from PIL import Image
 
 def open_image(path):
       newImage = Image.open(path)
-  return newImage
+    return newImage
 
 def save_image(image, path):
       image.save(path, 'png')
 
 def create_image(i, j):
-  image = Image.new("RGB", (i, j), "white")
-  return image
+        image = Image.new("RGB", (i, j), "white")
+    return image
 
 # Get the pixel from the given image
 def get_pixel(image, i, j):
@@ -43,8 +43,8 @@ def get_pixel(image, i, j):
       # Set Pixel in new image
       pixels[i, j] = (int(gray), int(gray), int(gray))
 
-  # Return new image
-  return new
+    # Return new image
+    return new
 
 def recolor_blog_picture(picture):
     pass
