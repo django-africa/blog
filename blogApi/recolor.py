@@ -46,5 +46,5 @@ def get_pixel(image, i, j):
   # Return new image
   return new
 
-def recolor_picture(picture):
+def recolor_blog_picture(picture):
     pass
