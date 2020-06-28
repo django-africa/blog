@@ -1,7 +1,7 @@
 venv
-migrations
 blogApiProject/media
 secret
-**__pycache__
+__pycache__
+**/__pycache__
 .idea
 db.sqlite3
