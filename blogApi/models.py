@@ -17,8 +17,7 @@ class UserProfile(AbstractUser):
         return self.email
 
     def save(self, *args, **kwargs):
-        recolor_blog_picture_task(self.profile_image)
-        recolor_blog_picture_task.apply_async()
+        recolor_blog_picture_task.apply_async(self.profile_image)
         return super(PrayerRequest, self).save(*args, **kwargs)
 
 class Category(models.Model):
