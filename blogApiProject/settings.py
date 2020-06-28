@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url
 from . import secret
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -84,14 +85,7 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog',
-        'USER': secret.database_username,
-        'PASSWORD': secret.database_password,
-        'HOST': '',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(default=os.environ[POSTGRES_URL])
 }
 
 
