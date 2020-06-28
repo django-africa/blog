@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ[POSTGRES_URL])
+    'default': dj_database_url.config(default=os.environ[DATABASE_URL])
 }
 
 
