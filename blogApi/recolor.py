@@ -1,11 +1,11 @@
 from PIL import Image
 
 def open_image(path):
-      newImage = Image.open(path)
+        newImage = Image.open(path)
     return newImage
 
 def save_image(image, path):
-      image.save(path, 'png')
+    image.save(path, 'png')
 
 def create_image(i, j):
         image = Image.new("RGB", (i, j), "white")
@@ -16,15 +16,15 @@ def get_pixel(image, i, j):
     # Inside image bounds?
     width, height = image.size
     if i > width or j > height:
-      return None
+        return None
 
     # Get Pixel
     pixel = image.getpixel((i, j))
     return pixel
 
-# Create new Image and a Pixel Map
-  new = create_image(width, height)
-  pixels = new.load()
+    # Create new Image and a Pixel Map
+    new = create_image(width, height)
+    pixels = new.load()
 
   # Transform to bluescale
   for i in range(width):
