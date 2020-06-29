@@ -1,4 +1,7 @@
 venv
 migrations
 blogApiProject/media
-secret
+blogApiProject/secret.py
+db.sqlite3
+__pycache__
+celerybeat_schedule
