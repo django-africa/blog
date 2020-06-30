@@ -26,28 +26,56 @@ SECRET_KEY = 'xjm7**e=&19w_1pg%fjw^6-_xg@^q_&o3ojx^p7-q44z5!@+jc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'tenant_schemas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'blogApi.apps.BlogapiConfig',
+    'blogApi',
     'rest_framework',
     'rest_framework_swagger',
     'taggit',
     'taggit_serializer',
     'hitcount',
+    'customer',
+]
+
+SHARED_APPS = [
+    'tenant_schemas',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'customer',
+]
+
+TENANT_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_swagger',
+    'taggit',
+    'taggit_serializer',
+    'hitcount',
+    'blogApi',
 ]
 
 MIDDLEWARE = [
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,12 +86,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blogApiProject.urls'
+# PUBLIC_SCHEMA_URLCONF = 'blogApiProject.urls_public'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,13 +106,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'tenant_schemas.postgresql_backend',
         'NAME': 'blog',
         'USER': secret.database_username,
         'PASSWORD': secret.database_password,
@@ -92,6 +119,10 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+DATABASE_ROUTERS = (
+    'tenant_schemas.routers.TenantSyncRouter',
+)
 
 
 # Password validation
@@ -126,6 +157,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+TENANT_MODEL = "customer.Client"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -137,12 +169,16 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'blogApi.UserProfile'
 
+
 SWAGGER_SETTINGS = {
     'LOGIN_URL': 'rest_framework:login',
     'LOGOUT_URL': 'rest_framework:logout',
 }
 
 REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
+
+DEFAULT_FILE_STORAGE = "tenant_schemas.storage.TenantFileSystemStorage"
+
 
 # CELERY STUFF
 BROKER_URL = 'redis://localhost:6379'
