@@ -178,8 +178,8 @@ CELERY_TIMEZONE = 'Africa/Lagos'
 
 DEFAULT_FROM_EMAIL= 'hello@djangoafrica.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST= 'smtp.sendgrid.net'
+EMAIL_HOST= os.environ.get('MAILGUN_SMTP_SERVER')
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = SENDGRID_USERNAME
-EMAIL_HOST_PASSWORD = SENDGRID_PASSWORD
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = Sos.environ.get('MAILGUN_SMTP_PASSWORD')
