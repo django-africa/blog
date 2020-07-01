@@ -89,10 +89,6 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config("DATABASE_URL"), 
-    {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
 }
 
 
