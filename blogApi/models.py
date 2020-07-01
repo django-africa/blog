@@ -86,9 +86,11 @@ class PrayerRequest(models.Model):
 
     def save(self, *args, **kwargs):
         self.date = timezone.now()
-        message = "Hi, {}. Your prayer request has been successfully sent across. " \
-                  "You are in our prayers.".format(self.name)
-        send_feedback_email_task.apply_async(message, self.email)
+        # message = "Hi, {}. Your prayer request has been successfully sent across. " \
+        #           "You are in our prayers.".format(self.name)
+        # send_feedback_email_task.apply_async(message, self.email)
+
+        # use signal to send the message after the request has been created
         return super(PrayerRequest, self).save(*args, **kwargs)
 
 
