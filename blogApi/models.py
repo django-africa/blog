@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
@@ -5,6 +6,8 @@ from taggit.managers import TaggableManager
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
 from .tasks import send_feedback_email_task
+from customer.models import Client
+from tenant_schemas.models import TenantMixin
 
 # Create your models here.
 
@@ -93,7 +96,3 @@ class PrayerRequest(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-

@@ -40,3 +40,6 @@ class PrayerRequestSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = PrayerRequest
+
+
+

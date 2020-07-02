@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework import generics, viewsets
-from .serializers import PostSerializer, CommentSerializer, UserProfileSerializer, PrayerRequestSerializer, CategorySerializer
+from rest_framework.views import APIView
+from .serializers import PostSerializer, CommentSerializer, UserProfileSerializer, PrayerRequestSerializer, \
+    CategorySerializer
 from .models import Post, Comment, UserProfile, PrayerRequest, Category
 from hitcount.views import HitCountDetailView
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -31,3 +35,6 @@ class PrayerRequestViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+
+

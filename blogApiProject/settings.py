@@ -86,7 +86,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blogApiProject.urls'
-# PUBLIC_SCHEMA_URLCONF = 'blogApiProject.urls_public'
+PUBLIC_SCHEMA_URLCONF = 'blogApiProject.urls'
 
 TEMPLATES = [
     {
@@ -111,6 +111,7 @@ WSGI_APPLICATION = 'blogApiProject.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'tenant_schemas.postgresql_backend',
         'NAME': 'blog',
         'USER': secret.database_username,
