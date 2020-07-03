@@ -9,7 +9,6 @@ from django.views.generic.edit import FormView
 class SignUp(FormView):
     template_name = 'blogApi/tenant_registration.html'
     form_class = ClientForm
-    success_url = '/thanks/'
 
     def get(self, request, *args, **kwargs):
         form = ClientForm()
@@ -21,7 +20,7 @@ class SignUp(FormView):
         if form.is_valid():
             name = form.cleaned_data['name']
             schema_name = form.cleaned_data['schema_name']
-            domain_url = form.cleaned_data['domain_url']
+            domain_url = name + ".localhost"
             Client.objects.create(name=name, schema_name=schema_name, domain_url=domain_url)
             return render(request, 'blogApi/tenant_registration.html', {'form': form})
         return render(request, 'blogApi/tenant_registration.html', {'form': form})

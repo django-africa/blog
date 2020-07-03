@@ -31,31 +31,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
-    'tenant_schemas',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'blogApi',
-    'rest_framework',
-    'rest_framework_swagger',
-    'taggit',
-    'taggit_serializer',
-    'hitcount',
-    'customer',
-]
-
 SHARED_APPS = [
     'tenant_schemas',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'customer',
 ]
 
@@ -74,6 +51,8 @@ TENANT_APPS = [
     'blogApi',
 ]
 
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
 MIDDLEWARE = [
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blogApiProject.urls'
-PUBLIC_SCHEMA_URLCONF = 'blogApiProject.urls'
+PUBLIC_SCHEMA_URLCONF = 'customer.urls'
 
 TEMPLATES = [
     {
