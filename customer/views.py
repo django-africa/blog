@@ -19,9 +19,7 @@ class SignUp(FormView):
         form = ClientForm(data=request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            schema_name = form.cleaned_data['schema_name']
-            domain_url = name + ".localhost"
-            Client.objects.create(name=name, schema_name=schema_name, domain_url=domain_url)
+            Client.objects.create(name=name, schema_name=name, domain_url=name + ".localhost")
             return render(request, 'blogApi/tenant_registration.html', {'form': form})
         return render(request, 'blogApi/tenant_registration.html', {'form': form})
 
