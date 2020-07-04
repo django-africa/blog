@@ -12,7 +12,6 @@ from hitcount.views import HitCountDetailView
 User = get_user_model()
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet, HitCountDetailView):
-    permission_classes = [AllowAny]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     count_hit = True
