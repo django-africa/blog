@@ -59,6 +59,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
 
 class Registration(APIView):
+    permission_classes = [AllowAny]
     """
     Create User
 
