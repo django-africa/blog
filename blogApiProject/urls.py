@@ -16,12 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.documentation import include_docs_urls
-from rest_framework_swagger.views import get_swagger_view
 from rest_framework_jwt.views import obtain_jwt_token
 
 API_TITLE = 'Blog API'
 API_DESCRIPTION = 'A web API for creating and editing post'
-schema_view = get_swagger_view(title=API_TITLE)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +27,4 @@ urlpatterns = [
     path('',  include('blogApi.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
-    path('swagger-docs/', schema_view),
 ]
