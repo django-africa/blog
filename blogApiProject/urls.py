@@ -30,7 +30,7 @@ urlpatterns = [
     path('api-token-auth/', obtain_jwt_token),
     path('',  include('blogApi.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('register', Registration.as_view() name="register")
+    path('register', Registration.as_view()),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
     path('swagger-docs/', schema_view),
 ]
