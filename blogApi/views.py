@@ -46,5 +46,3 @@ class PrayerRequestViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-
-class Registration(APIView):
