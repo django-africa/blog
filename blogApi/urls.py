@@ -12,4 +12,6 @@ router.register('comments', CommentViewSet, basename='comments')
 router.register('prayer_request', PrayerRequestViewSet, basename='prayer_request')
 router.register('category', CategoryViewSet, basename='category')
 
-urlpatterns = router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+    
+] + router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

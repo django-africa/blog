@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.documentation import include_docs_urls
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework_jwt.views import obtain_jwt_token
+from blogApi.views import Registration
 
 
 API_TITLE = 'Blog API'
@@ -29,6 +30,7 @@ urlpatterns = [
     path('api-token-auth/', obtain_jwt_token),
     path('',  include('blogApi.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/register', Registration.as_view(template_name="blogApi/registration.html")),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
     path('swagger-docs/', schema_view),
 ]
