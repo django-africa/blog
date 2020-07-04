@@ -65,8 +65,8 @@ class Registration(APIView):
 
     """
 
-    def post(self, request, format='json'):
-        serializer = UserSerializer(data=request.data)
+    def create_user(self, request, format='json'):
+        serializer = UserProfileSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
