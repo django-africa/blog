@@ -40,8 +40,6 @@ class Registration(TemplateView):
         user = User.object.create(
             username=request.data.get('username'),
             email=request.data.get('email'),
-            first_name=request.data.get('firstName'),
-            last_name=request.data.get('lastName')
         )
         user.set_password(str(request.data.get('password')))
         user.save()
