@@ -24,16 +24,6 @@ class UserViewSet(viewsets.ModelViewSet):
     """   
     Create User
     """
-    @action(detail=False, methods=['post'], permission_classes=[AllowAny]
-    name="create_user")
-    def create_user(self, request, format='json'):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_permissions(self):
         """
@@ -58,19 +48,3 @@ class PrayerRequestViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-
-class Registration(APIView):
-    permission_classes = [AllowAny]
-    """
-    Create User
-
-    """
-
-    def create_user(self, request, format='json'):
-        serializer = UserProfileSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
