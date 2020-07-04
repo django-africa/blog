@@ -23,7 +23,8 @@ class UserViewSet(viewsets.ModelViewSet):
     """   
     Create User
     """
-    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
+    @action(detail=False, methods=['post'], permission_classes=[AllowAny]
+    name="create_user")
     def create_user(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,7 +38,7 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         Instantiates and returns the list of permissions that this view requires.
         """
-        if self.action == 'create':
+        if self.action == 'post':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
