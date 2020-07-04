@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from django.views.generic import FormView
-from django.contrib.auth.forms import UserCreationForm
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics, viewsets
 from .serializers import PostSerializer, CommentSerializer, UserProfileSerializer, PrayerRequestSerializer, CategorySerializer
@@ -35,18 +35,18 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
-class Registration(FormView):
-    form_class = UserCreationForm
-    template_name = "blogApi/registration.html"
-    success_url = "/"
+class Registration(APIView):
+    """
+    Create User
 
-    
-    # def post( self, request):
-    #     user = User.object.create(
-    #         username=request.data.get('username'),
-    #         email=request.data.get('email'),
-    #     )
-    #     user.set_password(str(request.data.get('password')))
-    #     user.save()
+    """
 
-    #     return Response({"status": "sucess", "response":"User Sucessfully Created"}, status.status.HTTP_201_CREATED)
+    def post(self, request, format='json'):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                token = Token.objects.create(user=user)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
