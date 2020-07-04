@@ -23,7 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
     Create User
     """
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
-    def post(self, request, format='json'):
+    def create_user(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -39,7 +39,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             permission_classes = [AllowAny]
         else:
-            permission_classes = [IsAdmin]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class CommentViewSet(viewsets.ModelViewSet):
