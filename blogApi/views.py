@@ -20,19 +20,7 @@ class PostViewSet(viewsets.ModelViewSet, HitCountDetailView):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
     queryset = UserProfile.objects.all()
-    """   
-    Create User
-    """
 
-    def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        """
-        if self.action == 'POST':
-            permission_classes = [AllowAny]
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
