@@ -35,7 +35,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
-class Registration(TemplateView, APIView):
+class Registration(TemplateView):
     def post( self, request):
         user = User.object.create(
             username=request.data.get('username'),
