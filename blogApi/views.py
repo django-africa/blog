@@ -38,7 +38,7 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         Instantiates and returns the list of permissions that this view requires.
         """
-        if self.action == 'post':
+        if self.action == 'POST':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
