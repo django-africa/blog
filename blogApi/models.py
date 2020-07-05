@@ -52,7 +52,7 @@ class Post(models.Model, HitCountMixin):
 
     def save(self, *args, **kwargs):
         self.summary = self.get_post_summary()
-        recolor_blog_picture_task.apply_async(self.featured_image)
+        # recolor_blog_picture_task.apply_async(self.featured_image)
         return super(Post, self).save(*args, **kwargs)
 
 
