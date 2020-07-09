@@ -26,13 +26,12 @@ class Category(models.Model):
 class Post(models.Model, HitCountMixin):
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=350, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     text = models.TextField()
     view_count = models.IntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     featured_image = models.FileField(upload_to='images/')
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
-    tags = TaggableManager()
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
