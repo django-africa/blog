@@ -66,7 +66,7 @@ class Comment(models.Model):
     active = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['created_date']
+        ordering = ['-created_date']
 
     def anonymous_user(self):
         if self.user is None:
@@ -83,6 +83,9 @@ class PrayerRequest(models.Model):
     prayer_point = models.TextField()
     date = models.DateTimeField(blank=True, null=True,)
 
+    class Meta:
+        ordering = ['-date']    
+
     def __str__(self):
         return self.name
 
@@ -95,6 +98,19 @@ class PrayerRequest(models.Model):
         # use signal to send the message after the request has been created
         return super(PrayerRequest, self).save(*args, **kwargs)
 
+class Contact(models.Model):
+    fullname = models.CharField(max_length=200);
+    phonenumber = models.IntegerField(null=True, blank=True);
+    address = models.CharField(max_length=350);
+    message = models.TextField(null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True);
 
+    class Meta:
+        ordering = ['created_date']
 
+    def __str__(self):
+        return self.name
 
+    def save(self, *args, **kwargs):
+        self.date = timezone.now()
+        return super(Contact, self).save(*args, **kwargs)

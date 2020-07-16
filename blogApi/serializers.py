@@ -2,7 +2,7 @@ from rest_framework import serializers, fields
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
-from .models import Post, Comment, UserProfile, PrayerRequest, Category
+from .models import Post, Comment, UserProfile, PrayerRequest, Category, Contact
   
 
 User = get_user_model()
@@ -57,3 +57,8 @@ class PrayerRequestSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = PrayerRequest
+
+class ContactSearlizer(serializers.ModelSerializer):
+    class Meta:
+        field = '__all__'
+        model = Contact
