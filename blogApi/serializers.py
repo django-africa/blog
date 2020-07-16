@@ -43,7 +43,6 @@ class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     class Meta:
         fields = "__all__"
         model = Post
-        ordering = ['-id']
 
 
 class CommentSerializer(serializers.ModelSerializer):
