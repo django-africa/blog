@@ -36,6 +36,9 @@ class Post(models.Model, HitCountMixin):
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
 
+    class Meta:
+        ordering = ['-id']
+
     def get_author_name(self):
         return self.author.get_full_name()
 

@@ -13,8 +13,7 @@ User = get_user_model()
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet, HitCountDetailView):
     serializer_class = PostSerializer
-    queryset = Post.objects.all().reverse()
-    count_hit = True
+    queryset = Post.objects.all()
 
 
 
