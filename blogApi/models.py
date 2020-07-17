@@ -104,13 +104,17 @@ class Contact(models.Model):
     phonenumber = models.IntegerField(null=True, blank=True)
     address = models.CharField(max_length=350)
     message = models.TextField(null=True, blank=True)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         ordering = ['-created_date']
 
     def __str__(self):
         return self.fullname
+
+    def save(self, *args, **kwargs):
+        self.created_date = timezone.now()
+        return super(Contact, self).save(*args, **kwargs)
 
 
 class Advert (models.Model):
