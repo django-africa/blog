@@ -60,7 +60,7 @@ class PrayerRequestSerializer(serializers.ModelSerializer):
 
 class ContactSearlizer(serializers.ModelSerializer):
     class Meta:
-        fields = ('fullname', 'phonenumber', 'address', 'creates_date')
+        fields = ('fullname', 'phonenumber', 'address', 'created_date')
         model = Contact
 
 class AdvertSearlizer(serializers.ModelSerializer):
