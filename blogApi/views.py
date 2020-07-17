@@ -38,7 +38,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class ContactViewSet(viewsets.ModelViewSet):
     serializer_class = ContactSearlizer
-    queryset = Category.objects.all()
+    queryset = Contact.objects.all()
 
 class AdvertViewSet(viewsets.ModelViewSet):
     serializer_class = AdvertSearlizer
