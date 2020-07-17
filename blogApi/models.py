@@ -101,7 +101,7 @@ class PrayerRequest(models.Model):
 
 class Contact(models.Model):
     fullname = models.CharField(max_length=200)
-    phonenumber = models.IntegerField(null=True, blank=True)
+    phonenumber = models.BigIntegerField(null=True, blank=True)
     address = models.CharField(max_length=350)
     message = models.TextField(null=True, blank=True)
     created_date = models.DateTimeField(null=True, blank=True)
