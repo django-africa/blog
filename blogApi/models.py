@@ -79,7 +79,8 @@ class Comment(models.Model):
 
 class PrayerRequest(models.Model):
     name = models.CharField(max_length=350)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
+    phonenumber = models.IntegerField(null=True, blank=True);
     prayer_point = models.TextField()
     date = models.DateTimeField(blank=True, null=True,)
 
