@@ -100,11 +100,11 @@ class PrayerRequest(models.Model):
         return super(PrayerRequest, self).save(*args, **kwargs)
 
 class Contact(models.Model):
-    fullname = models.CharField(max_length=200);
-    phonenumber = models.IntegerField(null=True, blank=True);
-    address = models.CharField(max_length=350);
+    fullname = models.CharField(max_length=200)
+    phonenumber = models.IntegerField(null=True, blank=True)
+    address = models.CharField(max_length=350)
     message = models.TextField(null=True, blank=True)
-    created_date = models.DateTimeField(auto_now_add=True);
+    created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created_date']
