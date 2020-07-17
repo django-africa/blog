@@ -115,3 +115,14 @@ class Contact(models.Model):
     def save(self, *args, **kwargs):
         self.date = timezone.now()
         return super(Contact, self).save(*args, **kwargs)
+
+class Advert (models.Model):
+    advertname = models.CharField(max_length=200)
+    photo = models.FileField(upload_to='images/', null=True, blank=True)
+    active = models.BooleanField( default =False)
+
+    class Meta:
+        ordering = ['active']
+
+    def __str__(self):
+        return self.advertname
