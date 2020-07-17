@@ -80,7 +80,7 @@ class Comment(models.Model):
 class PrayerRequest(models.Model):
     name = models.CharField(max_length=350)
     email = models.EmailField(null=True, blank=True)
-    phonenumber = models.IntegerField(null=True, blank=True);
+    phonenumber = models.BigIntegerField(null=True, blank=True);
     prayer_point = models.TextField()
     date = models.DateTimeField(blank=True, null=True,)
 
@@ -127,3 +127,15 @@ class Advert (models.Model):
 
     def __str__(self):
         return self.advertname
+
+class Publication (models.Model):
+    name = models.CharField(max_length=200)
+    photo = models.FileField(upload_to='images/', null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True)
+    active = models.BooleanField( default =False)
+
+    class Meta:
+        ordering = ['price']
+
+    def __str__(self):
+        return self.name
