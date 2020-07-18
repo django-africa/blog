@@ -36,7 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
-    featured_image = Base64ImageField(required=False)
+    featured_image = Base64ImageField()
     published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     category = CategorySerializer(required=False)
     view_count = fields.IntegerField(source='get_count', required=False)
@@ -65,11 +65,13 @@ class ContactSearlizer(serializers.ModelSerializer):
         model = Contact
 
 class AdvertSearlizer(serializers.ModelSerializer):
+    photo = Base64ImageField()
     class Meta:
         fields = '__all__'
         model = Advert
 
 class PublicationSerializer(serializers.ModelSerializer):
+    photo = Base64ImageField()
     class Meta:
         fields = '__all__'
         moels = Publication
