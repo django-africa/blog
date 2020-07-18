@@ -123,7 +123,7 @@ class Advert (models.Model):
     active = models.BooleanField( default =False)
 
     class Meta:
-        ordering = ['active']
+        ordering = ['-id']
 
     def __str__(self):
         return self.advertname
@@ -135,7 +135,7 @@ class Publication (models.Model):
     active = models.BooleanField( default=False)
 
     class Meta:
-        ordering = ['price']
+        ordering = ['-id']
 
     def __str__(self):
         return self.name
