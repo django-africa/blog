@@ -3,7 +3,7 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication
-  
+from . import base64ImageSerializer
 
 User = get_user_model()
 

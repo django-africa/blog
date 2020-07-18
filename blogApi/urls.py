@@ -13,7 +13,7 @@ router.register('prayer_request', PrayerRequestViewSet, basename='prayer_request
 router.register('category', CategoryViewSet, basename='category'),
 router.register('contact', ContactViewSet, basename='contact'),
 router.register('advert', AdvertViewSet, basename='category'),
-router.register('publication', PublicationViewSet, base='publication')
+router.register('publication', PublicationViewSet, basename='publication')
 
 urlpatterns = [
     
