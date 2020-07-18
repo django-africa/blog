@@ -4,8 +4,17 @@ from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication
 from drf_extra_fields.fields import Base64FileField
+import base64
+from django.core.files.base import ContentFile
 
 User = get_user_model()
+
+def base64_file(data, name=None):
+    _format, _img_str = data.split(';base64,')
+    _name, ext = _format.split('/')
+    if not name:
+        name = _name.split(":")[-1]
+    return ContentFile(base64.b64decode(_img_str))
 
 class UserProfileSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -45,6 +54,10 @@ class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
         fields = "__all__"
         model = Post
 
+    def save(self, **kwargs):
+        self.featured_image = base64_file(self.featured_image)
+        
+        return super(PostSerializer, self).save(**kwargs)
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(required=False)
@@ -70,8 +83,18 @@ class AdvertSearlizer(serializers.ModelSerializer):
         fields = '__all__'
         model = Advert
 
+    def save(self, **kwargs):
+        self.photo = base64_file(self.photo)
+        
+        return super(PostSerializer, self).save(**kwargs)
+
 class PublicationSerializer(serializers.ModelSerializer):
     photo = Base64FileField()
     class Meta:
         fields = '__all__'
         model = Publication
+
+    def save(self, **kwargs):
+        self.photo = base64_file(self.photo)
+        
+        return super(PostSerializer, self).save(**kwargs)
