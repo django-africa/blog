@@ -3,7 +3,7 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication
-from . import base64ImageSerializer
+from drf_extra_fields.fields import Base64ImageField
 
 User = get_user_model()
 
@@ -36,7 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
-    featured_image = fields.ImageField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)
+    featured_image = Base64ImageField(required=False)
     published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     category = CategorySerializer(required=False)
     view_count = fields.IntegerField(source='get_count', required=False)
