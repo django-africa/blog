@@ -30,7 +30,7 @@ class Post(models.Model, HitCountMixin):
     text = models.TextField()
     view_count = models.IntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    featured_image = models.FileField(upload_to='images/', null=True, blank=True)
+    featured_image = models.ImageField(upload_to='images/', null=True, blank=True)
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk',
@@ -71,7 +71,7 @@ class Comment(models.Model):
     def anonymous_user(self):
         if self.user is None:
             self.user.full_name = "Anonymous"
-            self.user.profile_image = models.FileField(default="default.png")
+            self.user.profile_image = models.ImageField(default="default.png")
 
     def __str__(self):
         return '{} comment made by {}'.format(self.body, self.get_name)
@@ -119,7 +119,7 @@ class Contact(models.Model):
 
 class Advert (models.Model):
     advertname = models.CharField(max_length=200)
-    photo = models.FileField(upload_to='images/', null=True, blank=True)
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
     active = models.BooleanField( default =False)
 
     class Meta:
@@ -130,7 +130,7 @@ class Advert (models.Model):
 
 class Publication (models.Model):
     name = models.CharField(max_length=200)
-    photo = models.FileField(upload_to='images/', null=True, blank=True)
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     active = models.BooleanField( default=False)
 
