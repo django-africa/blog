@@ -54,10 +54,10 @@ class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
         fields = "__all__"
         model = Post
 
-    def save(self, **kwargs):
-        self.featured_image = base64_file(self.featured_image)
+    # def save(self, **kwargs):
+    #     self.featured_image = base64_file(self.featured_image)
         
-        return super(PostSerializer, self).save(**kwargs)
+    #     return super(PostSerializer, self).save(**kwargs)
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(required=False)
@@ -83,10 +83,10 @@ class AdvertSearlizer(serializers.ModelSerializer):
         fields = '__all__'
         model = Advert
 
-    def save(self, **kwargs):
-        self.photo = Advert.objects.create(base64_file(self.photo))
+    # def save(self, **kwargs):
+    #     self.photo = Advert.objects.create(base64_file(self.photo))
         
-        return super(AdvertSerializer, self).save(**kwargs)
+    #     return super(AdvertSerializer, self).save(**kwargs)
 
 class PublicationSerializer(serializers.ModelSerializer):
     photo = Base64FileField()
@@ -94,7 +94,7 @@ class PublicationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = Publication
 
-    def save(self, **kwargs):
-        self.photo = Publication.objects.create(base64_file(self.photo))
+    # def save(self, **kwargs):
+    #     self.photo = Publication.objects.create(base64_file(self.photo))
         
-        return super(PostSerializer, self).save(**kwargs)
+    #     return super(PostSerializer, self).save(**kwargs)
