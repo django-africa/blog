@@ -34,7 +34,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
 
 
-class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
+class PostSerializer(base64ImageSerializer, TaggitSerializer):
     created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     category = CategorySerializer(required=False)
