@@ -84,7 +84,7 @@ class AdvertSearlizer(serializers.ModelSerializer):
         model = Advert
 
     def save(self, **kwargs):
-        self.photo = base64_file(self.photo)
+        self.photo = Advert.objects.create(base64_file(self.photo))
         
         return super(PostSerializer, self).save(**kwargs)
 
@@ -95,6 +95,6 @@ class PublicationSerializer(serializers.ModelSerializer):
         model = Publication
 
     def save(self, **kwargs):
-        self.photo = base64_file(self.photo)
+        self.photo = Publication.objects.create(base64_file(self.photo))
         
         return super(PostSerializer, self).save(**kwargs)
