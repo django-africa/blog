@@ -120,7 +120,7 @@ class Contact(models.Model):
 class Advert (models.Model):
     advertname = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
-    active = models.BooleanField( default =False)
+    active = models.BooleanField(null=True, blank=True)
 
     class Meta:
         ordering = ['-id']
@@ -132,7 +132,7 @@ class Publication (models.Model):
     name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(null=True, blank=True)
 
     class Meta:
         ordering = ['-id']
