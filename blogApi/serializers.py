@@ -34,8 +34,9 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
 
 
-class PostSerializer(base64ImageSerializer, TaggitSerializer):
+class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
+    featured_image = fields.ImageField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)
     published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     category = CategorySerializer(required=False)
     view_count = fields.IntegerField(source='get_count', required=False)
