@@ -74,4 +74,4 @@ class PublicationSerializer(serializers.ModelSerializer):
     photo = Base64ImageField()
     class Meta:
         fields = '__all__'
-        models = Publication
+        model = Publication
