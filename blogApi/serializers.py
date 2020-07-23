@@ -37,11 +37,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
-    created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
-    featured_image = fields.ImageField(required=False)
-    published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
-    view_count = fields.IntegerField(source='get_count', required=False)
-
     class Meta:
         fields = "__all__"
         model = Post
