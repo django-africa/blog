@@ -79,7 +79,7 @@ class PublicationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = Publication
 
-class MininstriesSerializer(serializer.ModelSerializer):
+class MininstriesSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Ministries
