@@ -139,3 +139,20 @@ class Publication (models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Ministries(models.Model):
+    name = models.CharField(max_length=350, unique=True)
+    info = models.TextField()
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    summary = models.CharField(max_length=100, default='', null=True, blank=True)
+    
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.summary = self.info[:100]
+        return super(Ministries, self).save(*args, **kwargs)

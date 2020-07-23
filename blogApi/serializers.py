@@ -2,7 +2,7 @@ from rest_framework import serializers, fields
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
-from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication
+from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication, Ministries
 from drf_extra_fields.fields import Base64ImageField
 
 
@@ -79,7 +79,7 @@ class PublicationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = Publication
 
-    # def save(self, **kwargs):
-    #     self.photo = Publication.objects.create(base64_file(self.photo))
-        
-    #     return super(PostSerializer, self).save(**kwargs)
+class MininstriesSerializer(serializer.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Ministries
