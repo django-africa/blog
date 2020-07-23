@@ -40,7 +40,6 @@ class PostSerializer(serializers.ModelSerializer, TaggitSerializer):
     created_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
     featured_image = fields.ImageField(required=False)
     published_date = fields.DateTimeField(input_formats=['%Y-%m-%d:%H:%M:%S'], required=False)
-    category = CategorySerializer(required=False)
     view_count = fields.IntegerField(source='get_count', required=False)
 
     class Meta:
