@@ -171,7 +171,7 @@ class Event(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def save(self, *args, **kwargs):
         self.summary = self.info[:100]
