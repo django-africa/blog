@@ -144,7 +144,7 @@ class Publication (models.Model):
 class Ministries(models.Model):
     name = models.CharField(max_length=350, unique=True)
     link = models.URLField(null=True, blank=True) #Group Link
-    vlink = model.URLField(null=True, blank=True) #youtubelink
+    vlink = models.URLField(null=True, blank=True) #youtubelink
     info = models.TextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
@@ -162,7 +162,7 @@ class Ministries(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=350, unique=True)
     link = models.URLField(null=True, blank=True) #Group Link
-    vlink = model.URLField(null=True, blank=True) #youtubelink
+    vlink = models.URLField(null=True, blank=True) #youtubelink
     info = models.TextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
