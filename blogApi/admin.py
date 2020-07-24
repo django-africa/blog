@@ -11,7 +11,7 @@ admin.site.register(Ministries)
 admin.site.register(Advert)
 admin.site.register(Contact)
 admin.site.register(Publication)
-admin.site.register(Comment)
+
 
 
 @admin.register(Comment)
