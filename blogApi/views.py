@@ -5,8 +5,8 @@ from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics, viewsets
-from .serializers import PostSerializer, CommentSerializer, UserProfileSerializer, AdvertSearlizer, PrayerRequestSerializer, CategorySerializer, ContactSearlizer, PublicationSerializer, MininstriesSerializer
-from .models import Post, Comment, UserProfile, PrayerRequest, Category, Contact, Advert, Publication, Ministries
+from .serializers import PostSerializer, EventSerializer, CommentSerializer, UserProfileSerializer, AdvertSearlizer, PrayerRequestSerializer, CategorySerializer, ContactSearlizer, PublicationSerializer, MininstriesSerializer
+from .models import Post, Comment, UserProfile, Event, PrayerRequest, Category, Contact, Advert, Publication, Ministries
 from hitcount.views import HitCountDetailView
 
 User = get_user_model()
@@ -51,4 +51,7 @@ class PublicationViewSet(viewsets.ModelViewSet):
 class MinistriesViewset(viewsets.ModelViewSet):
     serializer_class = MininstriesSerializer
     queryset = Ministries.objects.all()
-    
+
+class EventViewset(viewsets.ModelViewSet):
+    serializer_class = EventSerializer
+    queryset = Event.objects.all()

@@ -143,6 +143,8 @@ class Publication (models.Model):
 
 class Ministries(models.Model):
     name = models.CharField(max_length=350, unique=True)
+    link = models.URLField(null=True, blank=True) #Group Link
+    vlink = model.URLField(null=True, blank=True) #youtubelink
     info = models.TextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
@@ -156,3 +158,21 @@ class Ministries(models.Model):
     def save(self, *args, **kwargs):
         self.summary = self.info[:100]
         return super(Ministries, self).save(*args, **kwargs)
+
+class Event(models.Model):
+    name = models.CharField(max_length=350, unique=True)
+    link = models.URLField(null=True, blank=True) #Group Link
+    vlink = model.URLField(null=True, blank=True) #youtubelink
+    info = models.TextField()
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    summary = models.CharField(max_length=100, default='', null=True, blank=True)
+    
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.summary = self.info[:100]
+        return super(Event, self).save(*args, **kwargs)

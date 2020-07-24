@@ -2,7 +2,7 @@ from rest_framework import serializers, fields
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
-from .models import Post, Comment, UserProfile, PrayerRequest, Advert, Category, Contact, Publication, Ministries
+from .models import Post, Comment, UserProfile, Event, PrayerRequest, Advert, Category, Contact, Publication, Ministries
 from drf_extra_fields.fields import Base64ImageField
 
 
@@ -83,3 +83,8 @@ class MininstriesSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Ministries
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Event
