@@ -133,6 +133,7 @@ class Publication (models.Model):
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     active = models.BooleanField(null=True, blank=True)
+    info = models.TextField()
 
     class Meta:
         ordering = ['-id']
@@ -150,7 +151,7 @@ class Ministries(models.Model):
     summary = models.CharField(max_length=100, default='', null=True, blank=True)
     
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
     def __str__(self):
         return self.name
