@@ -27,7 +27,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('id', 'username', 'email', 'password')
+        fields = '__all__'
 
 
 class CategorySerializer(serializers.ModelSerializer):
