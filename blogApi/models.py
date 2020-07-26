@@ -133,7 +133,7 @@ class Publication (models.Model):
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     active = models.BooleanField(null=True, blank=True)
-    info = models.TextField()
+    info = models.TextField(null=True, blank=True)
 
     class Meta:
         ordering = ['-id']
