@@ -24,7 +24,7 @@ API_DESCRIPTION = 'A web API for creating and editing post'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_jwt_token),
-    # path('',  include('blogApi.urls')),
+    path('',  include('blogApi.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
