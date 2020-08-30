@@ -1,8 +1,8 @@
 {% extends "admin/base_site.html" %}
-{% block title %}{{ title }} | {{ site_title|default:_('GSWMI site admin') }}{% endblock %}
+{% block title %}{{ title }} GSWMI site admin {% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('GSWMI administration') }}</a></h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">GSWMI administration</a></h1>
 {% endblock %}
 {% block extrahead %}
 <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
