@@ -202,5 +202,7 @@ EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PASSWORD')
 EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
 EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
 
-
+#Ckeditor Settings
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+AWS_QUERYSTRING_AUTH = False
