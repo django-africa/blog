@@ -31,7 +31,7 @@ class Post(models.Model, HitCountMixin):
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=350, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    text = RichTextField(default="text here")
+    text = models.TextField(default="")
     view_count = models.IntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     featured_image = models.ImageField(upload_to='images/', null=True, blank=True)
