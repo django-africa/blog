@@ -19,6 +19,9 @@ class UserProfile(AbstractUser):
 class Category(models.Model):
     name = models.CharField(max_length=300)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
 
@@ -142,7 +145,7 @@ class Publication (models.Model):
         return self.name
 
 
-class Ministries(models.Model):
+class Ministry(models.Model):
     name = models.CharField(max_length=350, unique=True)
     link = models.URLField(null=True, blank=True) #Group Link
     vlink = models.URLField(null=True, blank=True) #youtubelink
@@ -152,6 +155,9 @@ class Ministries(models.Model):
     
     class Meta:
         ordering = ['id']
+
+    class Meta:
+        verbose_name_plural = "Ministries"
 
     def __str__(self):
         return self.name
